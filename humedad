@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+"""
+Los datos son recogidos con el siguiente crontab
+2,12,22,32,42,52 * * * * /usr/local/bin/rtl_433 -q -G -T 60 -F json 2>/dev/null >>/var/log/rtl_433.log
+"""
+
 import sys
 
 FICHERO = "/var/log/rtl_433.log"

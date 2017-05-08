@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+import sys
+
+FICHERO = "/var/log/rtl_433.log"
+nan = NaN = NAN = None
+
+if len( sys.argv ) < 2:
+    medidas = {}
+    for linea in file( FICHERO ):
+        objeto = eval( linea.strip() )
+        if "channel" in objeto:
+            medidas[ objeto[ "channel" ] ] = objeto[ "temperature_C" ]
+    if 1 in medidas:
+        print "sensor1.value", medidas[ 1 ]
+    if 2 in medidas:
+        print "sensor2.value", medidas[ 2 ]
+    if 3 in medidas:
+        print "sensor3.value", medidas[ 3 ]
+elif sys.argv[ 1 ] == "autoconf":
+    print "yes"
+elif sys.argv[ 1 ] == "config":
+    print """graph_title Temperatura 
+graph_args --upper-limit 60 -l 0
+graph_vlabel Grados
+graph_scale no
+graph_category sensores
+sensor1.label Habitacion Pablo
+sensor2.label Habitacion Montse y Aurelio
+sensor3.label Exterior
+"""

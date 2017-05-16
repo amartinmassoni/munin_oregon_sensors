@@ -13,7 +13,10 @@ nan = NaN = NAN = None
 if len( sys.argv ) < 2:
     medidas = {}
     for linea in file( FICHERO ):
-        objeto = eval( linea.strip() )
+        try:
+            objeto = eval( linea.strip() )
+        except:
+            objeto = {}
         if "channel" in objeto:
             medidas[ objeto[ "channel" ] ] = objeto[ "temperature_C" ]
     if 1 in medidas:

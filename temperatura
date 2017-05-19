@@ -6,6 +6,7 @@ Los datos son recogidos con el siguiente crontab
 """
 
 import sys
+from decimal import Decimal
 
 FICHERO = "/var/log/rtl_433.log"
 nan = NaN = NAN = None
@@ -18,7 +19,10 @@ if len( sys.argv ) < 2:
         except:
             objeto = {}
         if "channel" in objeto:
-            medidas[ objeto[ "channel" ] ] = objeto[ "temperature_C" ]
+            if "temperature_C" in objeto:
+                medidas[ objeto[ "channel" ] ] = objeto[ "temperature_C" ]
+            elif "temperature_F" in objeto:
+                medidas[ objeto[ "channel" ] ] = ( objeto[ "temperature_F" ] - 32 ) / 1.8
     if 1 in medidas:
         print "sensor1.value", medidas[ 1 ]
     if 2 in medidas:

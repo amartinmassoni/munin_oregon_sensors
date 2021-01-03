@@ -18,7 +18,7 @@ if len( sys.argv ) < 2:
             objeto = eval( linea.strip() )
         except:
             objeto = {}
-        if "channel" in objeto and "id" in objeto and objeto[ "id" ] in [ 10, 195, 156 ]:
+        if "channel" in objeto and "id" in objeto and objeto[ "id" ] in [ 10, 195, 156, 59, 48 ]:
             if "temperature_C" in objeto:
                 medidas[ objeto[ "channel" ] ] = objeto[ "temperature_C" ]
             elif "temperature_F" in objeto:
